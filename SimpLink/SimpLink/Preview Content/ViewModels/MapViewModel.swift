@@ -96,6 +96,8 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     
     private func setupMockData() {
+        let intervals = [5, 8, 12, 16, 17, 19, 23, 29]
+
         // Load your bus stops and routes here
         // Make sure to separate bus stops from regular locations
         bsdBusStops = [
@@ -184,28 +186,28 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         ]
         allRoutes = [
             BusRoute(id: "R01", name: "Intermoda - Sektor 1.3", stops: [bsdBusStops[0], bsdBusStops[4], bsdBusStops[5], bsdBusStops[6], bsdBusStops[12], bsdBusStops[13], bsdBusStops[14], bsdBusStops[15], bsdBusStops[16], bsdBusStops[18], bsdBusStops[21], bsdBusStops[22], bsdBusStops[23], bsdBusStops[24], bsdBusStops[25], bsdBusStops[26], bsdBusStops[27]], color: BusRoute.routeColor(for: "R01"),
-                     departureTimes: generateDepartureTimes()
+                     departureTimes: generateDepartureTimes(interval: intervals[0])
                  ),
             BusRoute(id: "R02", name: "Sektor 1.3 - Intermoda", stops: [bsdBusStops[27], bsdBusStops[28], bsdBusStops[29], bsdBusStops[30], bsdBusStops[31], bsdBusStops[32], bsdBusStops[33], bsdBusStops[34], bsdBusStops[35], bsdBusStops[14], bsdBusStops[15], bsdBusStops[16], bsdBusStops[39], bsdBusStops[0]], color: BusRoute.routeColor(for: "R02"),
-                     departureTimes: generateDepartureTimes()
+                     departureTimes: generateDepartureTimes(interval: intervals[1])
                  ),
             BusRoute(id: "R03", name: "Greenwich Park - Sektor 1.3", stops: [bsdBusStops[40], bsdBusStops[41], bsdBusStops[42], bsdBusStops[43], bsdBusStops[44], bsdBusStops[46], bsdBusStops[47], bsdBusStops[48], bsdBusStops[49], bsdBusStops[50], bsdBusStops[51], bsdBusStops[12], bsdBusStops[13], bsdBusStops[14], bsdBusStops[15], bsdBusStops[16], bsdBusStops[18], bsdBusStops[21], bsdBusStops[22], bsdBusStops[25], bsdBusStops[26], bsdBusStops[27]], color: BusRoute.routeColor(for: "R03"),
-                     departureTimes: generateDepartureTimes()
+                     departureTimes: generateDepartureTimes(interval: intervals[2])
                  ),
             BusRoute(id: "R04", name: "Sektor 1.3 - Greenwich Park", stops: [bsdBusStops[27], bsdBusStops[28], bsdBusStops[29], bsdBusStops[30], bsdBusStops[31], bsdBusStops[32], bsdBusStops[33], bsdBusStops[34], bsdBusStops[35], bsdBusStops[14], bsdBusStops[15], bsdBusStops[16], bsdBusStops[52], bsdBusStops[53], bsdBusStops[54], bsdBusStops[55], bsdBusStops[56], bsdBusStops[57], bsdBusStops[58], bsdBusStops[61], bsdBusStops[62], bsdBusStops[63], bsdBusStops[64], bsdBusStops[40]], color: BusRoute.routeColor(for: "R04"),
-                     departureTimes: generateDepartureTimes()
+                     departureTimes: generateDepartureTimes(interval: intervals[3])
                  ),
             BusRoute(id: "R05", name: "Intermoda - De Park (Rute 1)", stops: [bsdBusStops[0], bsdBusStops[4], bsdBusStops[5], bsdBusStops[6], bsdBusStops[7], bsdBusStops[11], bsdBusStops[76], bsdBusStops[77], bsdBusStops[61], bsdBusStops[62], bsdBusStops[63], bsdBusStops[64], bsdBusStops[40], bsdBusStops[41], bsdBusStops[42], bsdBusStops[43], bsdBusStops[44]], color: BusRoute.routeColor(for: "R05"),
-                     departureTimes: generateDepartureTimes()
+                     departureTimes: generateDepartureTimes(interval: intervals[4])
                  ),
             BusRoute(id: "R06", name: "Intermoda - De Park (Rute 2)", stops: [bsdBusStops[0], bsdBusStops[78], bsdBusStops[79], bsdBusStops[80], bsdBusStops[81], bsdBusStops[13], bsdBusStops[14], bsdBusStops[15], bsdBusStops[37], bsdBusStops[75], bsdBusStops[16], bsdBusStops[52], bsdBusStops[53], bsdBusStops[54], bsdBusStops[55], bsdBusStops[56], bsdBusStops[57], bsdBusStops[58], bsdBusStops[59], bsdBusStops[44]], color: BusRoute.routeColor(for: "R06"),
-                     departureTimes: generateDepartureTimes()
+                     departureTimes: generateDepartureTimes(interval: intervals[5])
                  ),
             BusRoute(id: "R07", name: "The Breeze - AEON - ICE - The Breeze", stops: [bsdBusStops[14], bsdBusStops[15], bsdBusStops[16], bsdBusStops[73], bsdBusStops[74], bsdBusStops[71], bsdBusStops[37], bsdBusStops[75], bsdBusStops[73], bsdBusStops[9], bsdBusStops[11], bsdBusStops[74], bsdBusStops[71], bsdBusStops[37], bsdBusStops[75], bsdBusStops[16], bsdBusStops[18], bsdBusStops[36], bsdBusStops[14]], color: BusRoute.routeColor(for: "R05"),
-                     departureTimes: generateDepartureTimes()
+                     departureTimes: generateDepartureTimes(interval: intervals[6])
                  ),
             BusRoute(id: "R08", name: "Intermoda - Vanya Park - Intermoda", stops: [bsdBusStops[0], bsdBusStops[2], bsdBusStops[3], bsdBusStops[4], bsdBusStops[47], bsdBusStops[48], bsdBusStops[49], bsdBusStops[50], bsdBusStops[66], bsdBusStops[44], bsdBusStops[45], bsdBusStops[46], bsdBusStops[67], bsdBusStops[68], bsdBusStops[69], bsdBusStops[70], bsdBusStops[71], bsdBusStops[5], bsdBusStops[6], bsdBusStops[7], bsdBusStops[72], bsdBusStops[73], bsdBusStops[54], bsdBusStops[74], bsdBusStops[8], bsdBusStops[55], bsdBusStops[56], bsdBusStops[60], bsdBusStops[61], bsdBusStops[62], bsdBusStops[1], bsdBusStops[0]], color: BusRoute.routeColor(for: "R06"),
-                     departureTimes: generateDepartureTimes()
+                     departureTimes: generateDepartureTimes(interval: intervals[7])
                  ),
         ]
     }
@@ -455,7 +457,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
             name: "\(from.name) → \(to.name)",
             stops: [from, to],
             color: BusRoute.routeColor(for: "R01"),
-            departureTimes: generateDepartureTimes()
+            departureTimes: generateDepartureTimes(interval: 5)
         )
         
         let duration = Int(calculateDistance(from: from.location, to: to.location) / 400) // Bus speed ~24km/h
@@ -494,21 +496,17 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         return Int(distance / Double(averageSpeedInMetersPerMinute))
     }
 
-    func generateDepartureTimes() -> [String] {
+    private func generateDepartureTimes(interval: Int, count: Int = 8) -> [String] {
         let calendar = Calendar.current
         let now = Date()
-        var times: [String] = []
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        
-        // Generate next 5 departures, each 15 minutes apart
-        for i in 0..<5 {
-            if let departureTime = calendar.date(byAdding: .minute, value: 15 * i, to: now) {
-                times.append(formatter.string(from: departureTime))
+        return (0..<count).compactMap { i in
+            if let time = calendar.date(byAdding: .minute, value: interval * i, to: now) {
+                return formatter.string(from: time)
             }
+            return nil
         }
-        
-        return times
     }
 
     private func generateNextDepartureTime() -> String {
